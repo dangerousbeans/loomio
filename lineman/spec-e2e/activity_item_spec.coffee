@@ -1,4 +1,4 @@
-ddescribe 'Activity Items', ->
+describe 'Activity Items', ->
 
   threadHelper = require './helpers/thread_helper.coffee'
   proposalsHelper = require './helpers/proposals_helper.coffee'
