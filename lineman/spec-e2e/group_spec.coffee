@@ -81,12 +81,16 @@ describe 'Group Page', ->
     it 'can be a very open group', ->
       page.click('.group-form__advanced-link')
 
-      options = ['.group-form__privacy-open',
-                 '.group-form__membership-granted-upon-request',
-                 '.group-form__members-can-add-members',
-                 '.group-form__members-can-create-subgroups']
+      selectThese = ['.group-form__privacy-open',
+                      '.group-form__membership-granted-upon-request',
+                      '.group-form__members-can-create-subgroups']
 
-      page.click(options)
+      expectThese = ['.group-form__privacy-open',
+                      '.group-form__membership-granted-upon-request',
+                      '.group-form__members-can-add-members',
+                      '.group-form__members-can-create-subgroups']
+
+      page.click(selectThese)
       page.click('.group-form__submit-button')
 
       # confirm privacy change
@@ -98,7 +102,7 @@ describe 'Group Page', ->
                  '.group-form__advanced-link')
 
       # confirm the settings have stuck
-      page.expectSelected(options)
+      page.expectSelected(expectThese)
 
     it 'can be a very locked down group', ->
       page.click('.group-form__advanced-link',
