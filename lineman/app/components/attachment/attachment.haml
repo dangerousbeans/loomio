@@ -1,0 +1,11 @@
+.attachment-container
+  .attachment{class: 'attachment--{{style}}'}
+    %a.attachment__link{lmo-href: '{{attachment.original}}', target: '_blank'}>
+      %img.attachment__image{ng-if: 'attachment.isAnImage', ng-src: '{{location()}}', alt: "{{ 'activity_card.attachment_display.image_alt' | translate }}"}
+      .attachment__file{ng-if: '!attachment.isAnImage'}
+        %span {{attachment.filetype}}
+      .attachment__details{ng-if: 'style == "thread"'}
+        %span> {{attachment.filename}}
+        %span {{attachment.formattedFilesize()}}
+    %button.close.attachment__destroy{ng-if: '!attachment.commentId', ng-click: 'destroy()', title: "{{ 'comment_form.attachments.remove_attachment' | translate }}"}
+      %span{aria-hidden: 'true'}&times;

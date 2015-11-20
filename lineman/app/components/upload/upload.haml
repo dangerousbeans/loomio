@@ -1,7 +1,0 @@
-.blank
-  %a.attachment-link{lmo-href: '{{attachment.location}}', target: '_blank'}>
-    {{attachment.filename }}
-  %span.attachment-filesize
-    {{attachment.formattedFilesize()}}
-  %button.close.remove-upload{ng-click: 'destroy()', title: "{{ 'comment_form.attachments.remove_attachment' | translate }}"}
-    %span{aria-hidden: 'true'}&times;
