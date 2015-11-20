@@ -2,7 +2,7 @@ class Attachment < ActiveRecord::Base
   belongs_to :user
   belongs_to :comment, counter_cache: true
 
-  has_attached_file :file
+  has_attached_file :file, styles: { thumb: '150x150#', thread: '600x' }
   do_not_validate_attachment_file_type :file
 
   validates :user_id, presence: true
@@ -29,7 +29,11 @@ class Attachment < ActiveRecord::Base
   end
 
   def location
-    super || file.url
+    super || file.url(:thread)
+  end
+
+  def preview
+    file.url(:thumb)
   end
 
   def filesize
