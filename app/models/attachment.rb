@@ -2,15 +2,13 @@ class Attachment < ActiveRecord::Base
   belongs_to :user
   belongs_to :comment, counter_cache: true
 
-  has_attached_file :file, styles: { thumb: '150x150#', thread: '600x' }
+  has_attached_file :file, styles: lambda { |file| file.instance.is_an_image? ? { thumb: '100x100#', thread: '600x' } : {} }
   do_not_validate_attachment_file_type :file
 
   validates :user_id, presence: true
 
   alias_method :author, :user
   alias_method :author=, :user=
-  #alias_method :author_id, :user_id
-  #alias_method :author_id=, :user_id=
 
   def is_an_image?
     %w[jpg jpeg png gif].include?(filetype)
@@ -28,16 +26,24 @@ class Attachment < ActiveRecord::Base
     (file_content_type.try(:split, '/') || filename.try(:split, '.')).last.downcase
   end
 
-  def location
-    super || file.url(:thread)
-  end
-
-  def preview
-    file.url(:thumb)
+  def filename
+    super || file_file_name
   end
 
   def filesize
     super || file_file_size
+  end
+
+  def original
+    location || file.url(:original)
+  end
+
+  def thread
+    location || file.url(:thread)
+  end
+
+  def thumb
+    location || file.url(:thumb)
   end
 
 end
