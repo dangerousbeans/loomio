@@ -7,20 +7,19 @@ angular.module('loomioApp').directive 'attachmentForm', ->
     $scope.upload = (files) ->
       for file in files
         $rootScope.$broadcast 'disableCommentForm'
-        Records.attachments.upload(file, $scope.progress, $scope.success, $scope.reset)
+        Records.attachments.upload file,
+          progress: (progress) ->
+            $scope.percentComplete = Math.floor(100 * progress.loaded / progress.total)
+          success: (data) ->
+            Records.import(data)
+            _.each data.attachments, (attachment) ->
+              $scope.comment.newAttachmentIds.push(attachment.id)
+            $scope.reset()
+          error: $scope.reset
+          abort: $scope.reset
 
     $scope.selectFile = ->
       $timeout -> document.querySelector('.attachment-form__file-input').click()
-
-    $scope.abort = ->
-      Records.attachments.abortUpload()
-
-    $scope.success = (attachment) ->
-      $scope.comment.newAttachmentIds.push attachment.id
-      $scope.reset()
-
-    $scope.progress = (progress) ->
-      $scope.percentComplete = Math.floor(100 * progress.loaded / progress.total)
 
     $scope.reset = ->
       $scope.files = null
