@@ -76,10 +76,10 @@ module Loomio
 
     def self.fog_credentials
       env = Rails.application.secrets
-      case provider = env.fetch('FOG_PROVIDER', 'Local')
+      case env.fog_provider
       when 'AWS'   then { aws_access_key_id: env.aws_access_key_id, aws_secret_access_key: env.aws_secret_access_key }
       when 'Local' then { local_root: [Rails.root, 'public'].join('/'), endpoint: env.canonical_host }
-      end.merge(provider: provider)
+      end.merge(provider: env.fog_provider)
     end
 
     # Store avatars on Amazon S3
