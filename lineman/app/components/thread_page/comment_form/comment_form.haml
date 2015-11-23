@@ -8,7 +8,7 @@
       %textarea.form-control.comment-form__comment-field.lmo-primary-form-input{msd-elastic: 'true', aria-labelledby: 'comment-form-title', name: 'body', placeholder: "Say something...", ng_model: 'comment.body', mentio: true, mentio-trigger-char: "'@'", mentio_items: 'mentionables', mentio-template-url: 'generated/components/thread_page/comment_form/mentio_menu.html', mentio-search: 'fetchByNameFragment(term)', mentio-id: 'comment-field', ng-model-options: "{ updateOn: 'default blur', debounce: {'default': 300, 'blur': 0} }"}
       .comment-form__privacy-notice{ng-if: 'threadIsPublic()', translate: 'comment_form.public_privacy_notice'}
       .comment-form__privacy-notice{ng-if: 'threadIsPrivate()', translate: 'comment_form.private_privacy_notice', translate-value-group-name: '{{comment.group().fullName}}'}
-      %attachment{attachment: 'attachment', style: 'thumb', ng-repeat: 'attachment in comment.newAttachments() | orderBy:"id" track by attachment.id'}
+      %attachment_preview{attachment: 'attachment', style: 'thumb', ng-repeat: 'attachment in comment.newAttachments() | orderBy:"id" track by attachment.id'}
       .thread-comment-form-actions
         %button.lmo-btn--submit.submit.comment-form__submit-button{type: 'submit', ng-disabled: 'submitIsDisabled', translate: 'comment_form.submit_button.label'}
         %button.lmo-btn--default.comment-form-button{type: 'button', translate: 'comment_form.cancel_reply', ng-show: 'comment.parentId', ng-click: 'comment.parentId = null'}

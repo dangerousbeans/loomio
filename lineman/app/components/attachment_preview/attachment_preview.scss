@@ -1,28 +1,30 @@
-.attachment {
+.attachment-preview {
   position: relative;
-  &:hover .attachment__details { opacity: 1; }
+  &:hover .attachment-preview__details { opacity: 1; }
 }
 
-.attachment img {
+.attachment-preview img {
   border-radius: 5px;
   max-width: 100%;
+  border: 1px solid $border-color;
 }
 
-.attachment--thumb {
+.attachment-preview--thumb {
   max-width: 100px;
   margin: 5px 5px 5px;
   float: left;
 }
 
-.attachment--thread {
+.attachment-preview--thread {
   margin: 10px 40px;
+  position: relative;
 }
 
-.attachment__link {
+.attachment-preview__link {
   &:hover { text-decoration: none; }
 }
 
-.attachment__file {
+.attachment-preview__file {
   border-radius: 5px;
   display: block;
   width: 100px;
@@ -30,7 +32,7 @@
   background: $background-color;
 }
 
-.attachment__details {
+.attachment-preview__details {
   position: absolute;
   bottom: 0;
   color: white;
@@ -43,7 +45,7 @@
   transition: all 0.5s;
 }
 
-.attachment__file {
+.attachment-preview__file {
   font-size: 30px;
    line-height: 100px;
    text-align: center;
@@ -54,7 +56,7 @@
    &:hover { text-decoration: none; }
 }
 
-.attachment__destroy {
+.attachment-preview__destroy {
   position: absolute;
   top: 0;
   right: 5px;

@@ -2,9 +2,9 @@ angular.module('loomioApp').factory 'AttachmentRecordsInterface', (BaseRecordsIn
   class AttachmentRecordsInterface extends BaseRecordsInterface
     model: AttachmentModel
 
-    upload: (file, callbacks) ->
+    upload: (file, progress) ->
       @remote.upload '', file,
         data:
           'attachment[filename]': file.name.replace(/[^a-z0-9_\-\.]/gi, '_')
         fileFormDataName: 'attachment[file]'
-      , callbacks
+      , progress

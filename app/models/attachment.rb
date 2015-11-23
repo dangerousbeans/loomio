@@ -34,16 +34,9 @@ class Attachment < ActiveRecord::Base
     super || file_file_size
   end
 
-  def original
-    location || file.url(:original)
+  def location
+    self[:location] || file.url(:original)
   end
-
-  def thread
-    location || file.url(:thread)
-  end
-
-  def thumb
-    location || file.url(:thumb)
-  end
+  alias :original :location
 
 end
