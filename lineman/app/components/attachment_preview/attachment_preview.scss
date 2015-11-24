@@ -1,6 +1,6 @@
 .attachment-preview {
   position: relative;
-  &:hover .attachment-preview__details { opacity: 1; }
+  &:hover .attachment-preview__file--image { opacity: 1; }
 }
 
 .attachment-preview img {
@@ -27,33 +27,35 @@
 .attachment-preview__file {
   border-radius: 5px;
   display: block;
+  background: $background-color;
+  color: $grey-on-grey;
+}
+
+.attachment-preview__file--thumb {
   width: 100px;
   height: 100px;
-  background: $background-color;
+  font-size: 30px;
+  line-height: 100px;
+  text-align: center;
 }
 
-.attachment-preview__details {
+.attachment-preview__file--thread {
+  line-height: 30px;
+}
+
+.attachment-preview__file--image {
   position: absolute;
   bottom: 0;
-  color: white;
   width: 100%;
-  background: rgba(0,0,0,.5);
+  background: rgba(255,255,255,.5);
   border-radius: 0 0 5px 5px;
-  padding: 3px 5px;
   opacity: 0;
   pointer-events: none;
-  transition: all 0.5s;
+  transition: opacity 0.5s;
 }
 
-.attachment-preview__file {
-  font-size: 30px;
-   line-height: 100px;
-   text-align: center;
-   color: white;
-   overflow: hidden;
-   word-wrap: normal;
-   text-shadow: 0 0 3px black;
-   &:hover { text-decoration: none; }
+.attachment-preview__file--thread i {
+  padding: 0 7px;
 }
 
 .attachment-preview__destroy {
